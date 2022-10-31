@@ -1,11 +1,12 @@
+const throttle = require('lodash.throttle');
+
 const form = document.querySelector('form')
 const input = document.querySelector('input')
 const textarea = document.querySelector('textarea')
 const btn = document.querySelector('button')
 
 
-form.addEventListener('input', onFormInput)
-updateInput()
+form.addEventListener('input', throttle(onFormInput, 500))
 btn.addEventListener('click', onBtnSubmit)
 
 
