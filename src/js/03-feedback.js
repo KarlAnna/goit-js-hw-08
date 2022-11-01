@@ -7,7 +7,8 @@ const btn = document.querySelector('button')
 
 
 form.addEventListener('input', throttle(onFormInput, 500))
-btn.addEventListener('click', onBtnSubmit)
+updateInput()
+btn.addEventListener('click', onBtnClick)
 
 
 //* 1. Відстежуй на формі подію input, і щоразу записуй у локальне сховище об'єкт з полями email і message, у яких зберігай поточні 
@@ -29,12 +30,13 @@ function updateInput() {
 }
 
 //* 3. Під час сабміту форми очищуй сховище і поля форми, а також виводь у консоль об'єкт з полями email, message та їхніми поточними значеннями.
-function onBtnSubmit() {
+function onBtnClick(e) {
     const myFormData = new FormData(form)
     const formDataObj = {}
     myFormData.forEach((value, key) => (formDataObj[key] = value))
     console.log(formDataObj)
 
     localStorage.clear()
+    e.preventDefault()
     form.reset()
 }
